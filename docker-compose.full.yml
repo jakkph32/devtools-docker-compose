@@ -76,7 +76,7 @@ services:
         - null_n_co
     depends_on:
       - postgres
-      
+
   prometheus:
     image: prom/prometheus
     ports:
@@ -196,3 +196,8 @@ volumes:
     driver: local
   redis-cluster_data-5:
     driver: local
+
+
+networks:
+  null_n_co:
+    external: true
