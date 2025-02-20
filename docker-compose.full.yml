@@ -60,7 +60,7 @@ services:
       ports:
         - "5432:5432"
       networks:
-        - postgres
+        - null_n_co
       volumes:
         - pg-data:/var/lib/postgresql/data
   
@@ -73,14 +73,12 @@ services:
     ports:
       - "5050:80"
     networks:
-        - postgres
+        - null_n_co
     depends_on:
       - postgres
 
 networks:
-  postgres:
-    
-  proxy:
+  null_n_co:
     external: true
     driver: bridge
 volumes:
@@ -99,7 +97,7 @@ services:
       ports:
         - "5432:5432"
       networks:
-        - postgres
+        - null_n_co
       volumes:
         - pg-data:/var/lib/postgresql/data
   
@@ -112,7 +110,7 @@ services:
     ports:
       - "5050:80"
     networks:
-        - postgres
+        - null_n_co
     depends_on:
       - postgres
 
