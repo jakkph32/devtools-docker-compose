@@ -13,7 +13,8 @@ services:
       - 80:80
       - 443:443
     restart: unless-stopped
-
+    networks:
+      - null_n_co
 
   code-server:
     image: lscr.io/linuxserver/code-server:latest
@@ -44,8 +45,9 @@ services:
       - "traefik.http.services.code-server.loadbalancer.server.port=8443"
       - "traefik.docker.network=proxy"
     restart: unless-stopped
-
-
+    networks:
+      null_n_co:
+      
 
 
   postgres:
@@ -57,7 +59,8 @@ services:
         POSTGRES_PASSWORD: example-database-password
       ports:
         - "5432:5432"
-
+      networks:
+        - null_n_co
       volumes:
         - pg-data:/var/lib/postgresql/data
   
@@ -69,7 +72,8 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin_password
     ports:
       - "5050:80"
-
+    networks:
+        - null_n_co
     depends_on:
       - postgres
 
@@ -83,7 +87,8 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--web.enable-lifecycle'
     restart: always
-
+    networks:
+      - null_n_co
   
   grafana:
     image: grafana/grafana
@@ -92,6 +97,8 @@ services:
     depends_on:
       - prometheus
     restart: always
+    networks:
+      - null_n_co
 
   alertmanager:
     image: prom/alertmanager
@@ -102,6 +109,8 @@ services:
     command:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
     restart: always
+    networks:
+      - null_n_co
       
   redis:
     image: 'bitnami/redis:latest'
