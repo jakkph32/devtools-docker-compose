@@ -31,7 +31,8 @@ services:
       - DEFAULT_WORKSPACE=/config/workspace #optional
     volumes:
       - /home/user/docker/code-server/config:/config
-
+    ports:
+      - 8443:8443
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.code-server.entrypoints=http"
@@ -48,8 +49,6 @@ services:
     networks:
       null_n_co:
       
-
-
   postgres:
       image: postgres:latest
       container_name: example-database
