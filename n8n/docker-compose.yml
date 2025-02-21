@@ -1,0 +1,12 @@
+services:
+  n8nio:
+    command: \
+    image: docker.n8n.io/n8nio/n8n
+    volumes:
+      - "n8n_data:/home/node/.n8n"
+      - n8n_data
+    ports:
+      - "5678:5678"
+    container_name: n8n
+    tty: true
+    stdin_open: true

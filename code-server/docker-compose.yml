@@ -33,5 +33,5 @@ services:
 
 
 networks:
-  proxy:
+  null_n_co:
     external: true
